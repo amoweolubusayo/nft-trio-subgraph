@@ -46,7 +46,7 @@ Collection 2 - [Party Degenerates](https://opensea.io/collection/partydegenerate
 
 Contract Address - 0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770
 
-graph init --from-contract 0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770 --network mainnet --abi ./ERC165.json
+graph init --from-contract 0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770 --network mainnet --abi ./ERC721.json
 
 Schema -
 
