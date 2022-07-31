@@ -1,5 +1,5 @@
 import { Address, BigInt, Bytes } from "@graphprotocol/graph-ts";
-import { ERC721 } from "../generated/ERC721/ERC721";
+import { Starlink } from "../generated/StarLink/Starlink";
 import { Account, Collectible, Collection } from "../generated/schema";
 
 export function getOrCreateAccount(address: Address): Account {
@@ -22,7 +22,7 @@ export function getOrCreateCollection(address: Address): Collection {
     collection = new Collection(collectionId);
     collection.collectionAddress = address;
 
-    let contract = ERC721.bind(address);
+    let contract = Starlink.bind(address);
     let nameResult = contract.try_name();
     if (!nameResult.reverted) {
       collection.collectionName = nameResult.value;
@@ -56,7 +56,7 @@ export function getOrCreateCollectible(
     collectible.creator = creatorId;
     collectible.owner = creatorId;
     collectible.created = createdTimestamp;
-    collectible.descriptorUri = ERC721.bind(
+    collectible.descriptorUri = Starlink.bind(
       Address.fromBytes(collectionAddress)
     ).tokenURI(tokenId);
     collectible.save();

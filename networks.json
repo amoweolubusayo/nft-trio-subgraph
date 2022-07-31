@@ -1,13 +1,16 @@
 {
-    "mainnet": {
-        "ERC721": {
-            "address": "0x27cC171B16FdD2224E1f93eD7DccFcc6790cA4BF"
-        },
-        "ERC165": {
-            "address": "0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770"
-        },
-        "ERC1155": {
-            "address": "0xE18a32192ED95b0FE9D70D19e5025f103475d7BA"
-        }
+  "mainnet": {
+    "Starlink": {
+      "address": "0x27cC171B16FdD2224E1f93eD7DccFcc6790cA4BF"
+    },
+    "Contract": {
+      "address": "0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770"
+    },
+    "PartyDegenerates": {
+      "address": "0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770"
+    },
+    "ProofOfBeauty": {
+      "address": "0xE18a32192ED95b0FE9D70D19e5025f103475d7BA"
     }
+  }
 }

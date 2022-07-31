@@ -1,6 +1,7 @@
 import { Address } from "@graphprotocol/graph-ts";
-import { Transfer } from "../generated/ERC721/ERC721";
+import { Transfer } from "../generated/Starlink/Starlink";
 import { Collectible } from "../generated/schema";
+
 import {
   getOrCreateAccount,
   getOrCreateCollectible,
@@ -40,7 +41,7 @@ export function handleTransfer(event: Transfer): void {
         collectible.owner = sender.id;
         collectible.modified = event.block.timestamp;
       }
-      collectible.save()
+      collectible.save();
     }
   }
 }

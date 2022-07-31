@@ -41,6 +41,7 @@ type Collection @entity {
 }
 
 ```
+PartyDegenerates
 
 Collection 2 - [Party Degenerates](https://opensea.io/collection/partydegenerates)
 

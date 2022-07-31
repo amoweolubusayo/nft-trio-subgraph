@@ -3,7 +3,6 @@ type Account @entity {
   address: Bytes!
   collectibles: [Collectible!] @derivedFrom(field: "owner")
 }
-
 type Collectible @entity {
   id: ID!
   tokenId: BigInt!
