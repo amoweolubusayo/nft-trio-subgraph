@@ -9,7 +9,7 @@ import {
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { Account } from "../generated/schema";
 import { Approval as ContractApprovalEvent } from "../generated/StarLink/StarLink";
-import { handleApproval } from "../src/starlink";
+import { handleTransfer } from "../src/starlink";
 import { createContractApprovalEvent } from "./contract-utils";
 
 // Tests structure (matchstick-as >=0.5.0)
