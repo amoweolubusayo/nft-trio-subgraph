@@ -20,22 +20,22 @@ export function getOrCreateCollection(address: Address): Collection {
   let collection = Collection.load(collectionId);
   if (!collection) {
     collection = new Collection(collectionId);
-    collection.collectionAddress = address;
+    collection.address = address;
 
     let contract = Starlink.bind(address);
     let nameResult = contract.try_name();
     if (!nameResult.reverted) {
-      collection.collectionName = nameResult.value;
+      collection.name = nameResult.value;
     }
 
     let symbolResult = contract.try_symbol();
     if (!symbolResult.reverted) {
-      collection.collectionSymbol = symbolResult.value;
+      collection.symbol = symbolResult.value;
     }
 
     let balanceResult = contract.try_balanceOf(address);
     if (!balanceResult.reverted) {
-      collection.collectionBalance = balanceResult.value;
+      collection.balance = balanceResult.value;
     }
     collection.save();
   }

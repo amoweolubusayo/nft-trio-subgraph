@@ -20,14 +20,14 @@ export function getOrCreateCollection(address: Address): Collection {
   let collection = Collection.load(collectionId);
   if (!collection) {
     collection = new Collection(collectionId);
-    collection.collectionAddress = address;
+    collection.address = address;
 
     let contract = ProofOfBeauty.bind(address);
     let name = "ProofOfBeauty";
-    collection.collectionName = name;
+    collection.name = name;
     let symbol = "POB";
-    collection.collectionSymbol = symbol;
-    collection.collectionAddress = address;
+    collection.symbol = symbol;
+    collection.address = address;
 
     collection.save();
   }

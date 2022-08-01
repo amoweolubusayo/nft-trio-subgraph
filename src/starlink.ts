@@ -17,14 +17,14 @@ export function handleTransfer(event: Transfer): void {
   ) {
     // THIS IS A MINT
     getOrCreateCollectible(
-      collection.collectionAddress,
+      collection.address,
       collection.id,
       event.params.tokenId,
       receiver.id,
       event.block.timestamp
     );
   } else {
-    let collectibleId = collection.collectionAddress
+    let collectibleId = collection.address
       .toHexString()
       .concat("-")
       .concat(event.params.tokenId.toHexString());

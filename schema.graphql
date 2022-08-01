@@ -3,6 +3,17 @@ type Account @entity {
   address: Bytes!
   collectibles: [Collectible!] @derivedFrom(field: "owner")
 }
+
+type Collection @entity {
+  id: ID!
+  name: String
+  symbol: String
+  balance: BigInt
+  address: Bytes!
+  operators: [Operator!]! @derivedFrom(field: "collection")
+  collectibles: [Collectible!] @derivedFrom(field: "collection")
+}
+
 type Collectible @entity {
   id: ID!
   tokenId: BigInt!
@@ -17,11 +28,17 @@ type Collectible @entity {
   removed: BigInt
 }
 
-type Collection @entity {
+type Operator @entity {
   id: ID!
-  collectionName: String
-  collectionSymbol: String
-  collectionBalance: BigInt
-  collectionAddress: Bytes!
-  collectibles: [Collectible!] @derivedFrom(field: "collection")
+  collection: Collection!
+  owner: Account!
+  operator: Account!
+  approved: Boolean!
+}
+
+type PobBalance @entity {
+  id: ID!
+  account: Account
+  value: BigDecimal!
+  valueExact: BigInt!
 }

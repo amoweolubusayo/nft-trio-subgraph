@@ -59,10 +59,10 @@ export function handleTransferSingle(event: TransferSingle): void {
     tokenContract = new Collection(contractId);
 
     let name = "ProofOfBeauty";
-    tokenContract.collectionName = name;
+    tokenContract.name = name;
     let symbol = "POB";
-    tokenContract.collectionSymbol = symbol;
-    tokenContract.collectionAddress = contract._address;
+    tokenContract.symbol = symbol;
+    tokenContract.address = contract._address;
     tokenContract.save();
   }
 }
