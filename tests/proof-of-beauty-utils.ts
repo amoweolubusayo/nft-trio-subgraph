@@ -1,58 +1,58 @@
 import { newMockEvent } from "matchstick-as"
 import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
-  ContractApprovalForAll,
-  ContractOwnershipTransferred,
+  ProofOfBeautyApprovalForAll,
+  ProofOfBeautyOwnershipTransferred,
   TransferBatch,
   TransferSingle,
   URI
-} from "../generated/Contract/Contract"
+} from "../generated/ProofOfBeauty/ProofOfBeauty"
 
-export function createContractApprovalForAllEvent(
+export function createProofOfBeautyApprovalForAllEvent(
   _owner: Address,
   _operator: Address,
   _approved: boolean
-): ContractApprovalForAll {
-  let contractApprovalForAllEvent = changetype<ContractApprovalForAll>(
-    newMockEvent()
-  )
+): ProofOfBeautyApprovalForAll {
+  let proofOfBeautyApprovalForAllEvent = changetype<
+    ProofOfBeautyApprovalForAll
+  >(newMockEvent())
 
-  contractApprovalForAllEvent.parameters = new Array()
+  proofOfBeautyApprovalForAllEvent.parameters = new Array()
 
-  contractApprovalForAllEvent.parameters.push(
+  proofOfBeautyApprovalForAllEvent.parameters.push(
     new ethereum.EventParam("_owner", ethereum.Value.fromAddress(_owner))
   )
-  contractApprovalForAllEvent.parameters.push(
+  proofOfBeautyApprovalForAllEvent.parameters.push(
     new ethereum.EventParam("_operator", ethereum.Value.fromAddress(_operator))
   )
-  contractApprovalForAllEvent.parameters.push(
+  proofOfBeautyApprovalForAllEvent.parameters.push(
     new ethereum.EventParam("_approved", ethereum.Value.fromBoolean(_approved))
   )
 
-  return contractApprovalForAllEvent
+  return proofOfBeautyApprovalForAllEvent
 }
 
-export function createContractOwnershipTransferredEvent(
+export function createProofOfBeautyOwnershipTransferredEvent(
   previousOwner: Address,
   newOwner: Address
-): ContractOwnershipTransferred {
-  let contractOwnershipTransferredEvent = changetype<
-    ContractOwnershipTransferred
+): ProofOfBeautyOwnershipTransferred {
+  let proofOfBeautyOwnershipTransferredEvent = changetype<
+    ProofOfBeautyOwnershipTransferred
   >(newMockEvent())
 
-  contractOwnershipTransferredEvent.parameters = new Array()
+  proofOfBeautyOwnershipTransferredEvent.parameters = new Array()
 
-  contractOwnershipTransferredEvent.parameters.push(
+  proofOfBeautyOwnershipTransferredEvent.parameters.push(
     new ethereum.EventParam(
       "previousOwner",
       ethereum.Value.fromAddress(previousOwner)
     )
   )
-  contractOwnershipTransferredEvent.parameters.push(
+  proofOfBeautyOwnershipTransferredEvent.parameters.push(
     new ethereum.EventParam("newOwner", ethereum.Value.fromAddress(newOwner))
   )
 
-  return contractOwnershipTransferredEvent
+  return proofOfBeautyOwnershipTransferredEvent
 }
 
 export function createTransferBatchEvent(

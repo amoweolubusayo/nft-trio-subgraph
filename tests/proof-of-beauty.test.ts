@@ -7,10 +7,10 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { ContractApprovalForAll } from "../generated/schema"
-import { ContractApprovalForAll as ContractApprovalForAllEvent } from "../generated/Contract/Contract"
-import { handleContractApprovalForAll } from "../src/contract"
-import { createContractApprovalForAllEvent } from "./contract-utils"
+import { ProofOfBeautyApprovalForAll } from "../generated/schema"
+import { ProofOfBeautyApprovalForAll as ProofOfBeautyApprovalForAllEvent } from "../generated/ProofOfBeauty/ProofOfBeauty"
+import { handleProofOfBeautyApprovalForAll } from "../src/proof-of-beauty"
+import { createProofOfBeautyApprovalForAllEvent } from "./proof-of-beauty-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
@@ -24,12 +24,12 @@ describe("Describe entity assertions", () => {
       "0x0000000000000000000000000000000000000001"
     )
     let _approved = "boolean Not implemented"
-    let newContractApprovalForAllEvent = createContractApprovalForAllEvent(
+    let newProofOfBeautyApprovalForAllEvent = createProofOfBeautyApprovalForAllEvent(
       _owner,
       _operator,
       _approved
     )
-    handleContractApprovalForAll(newContractApprovalForAllEvent)
+    handleProofOfBeautyApprovalForAll(newProofOfBeautyApprovalForAllEvent)
   })
 
   afterAll(() => {
@@ -39,24 +39,24 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("ContractApprovalForAll created and stored", () => {
-    assert.entityCount("ContractApprovalForAll", 1)
+  test("ProofOfBeautyApprovalForAll created and stored", () => {
+    assert.entityCount("ProofOfBeautyApprovalForAll", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "ContractApprovalForAll",
+      "ProofOfBeautyApprovalForAll",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "_owner",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "ContractApprovalForAll",
+      "ProofOfBeautyApprovalForAll",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "_operator",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "ContractApprovalForAll",
+      "ProofOfBeautyApprovalForAll",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "_approved",
       "boolean Not implemented"

@@ -1,25 +1,25 @@
 import { Address } from "@graphprotocol/graph-ts";
-import { Transfer } from "../generated/PartyDegenerates/PartyDegenerates";
+import { TransferSingle } from "../generated/ProofOfBeauty/ProofOfBeauty";
 import { Collectible } from "../generated/schema";
 
 import {
   getOrCreateAccount,
   getOrCreateCollectible,
   getOrCreateCollection,
-} from "./party-degenerates-util";
+} from "./proof-of-beauty-util";
 
-export function handleTransfer(event: Transfer): void {
+export function handleTransferSingle(event: TransferSingle): void {
   let collection = getOrCreateCollection(event.address);
-  let receiver = getOrCreateAccount(event.params.to);
+  let receiver = getOrCreateAccount(event.params._to);
   if (
-    event.params.from ==
+    event.params._from ==
     Address.fromString("0x0000000000000000000000000000000000000000")
   ) {
     // THIS IS A MINT
     getOrCreateCollectible(
       collection.collectionAddress,
       collection.id,
-      event.params.tokenId,
+      event.params._id,
       receiver.id,
       event.block.timestamp
     );
@@ -27,17 +27,17 @@ export function handleTransfer(event: Transfer): void {
     let collectibleId = collection.collectionAddress
       .toHexString()
       .concat("-")
-      .concat(event.params.tokenId.toHexString());
+      .concat(event.params._id.toHexString());
     let collectible = Collectible.load(collectibleId);
     if (collectible) {
       if (
-        event.params.to ==
+        event.params._to ==
         Address.fromString("0x0000000000000000000000000000000000000000")
       ) {
         // THIS IS A BURN
         collectible.removed = event.block.timestamp;
       } else {
-        let sender = getOrCreateAccount(event.params.from);
+        let sender = getOrCreateAccount(event.params._from);
         collectible.owner = sender.id;
         collectible.modified = event.block.timestamp;
       }

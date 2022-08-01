@@ -7,7 +7,7 @@ dataSources:
     network: mainnet
     source:
       address: "0x27cC171B16FdD2224E1f93eD7DccFcc6790cA4BF"
-      startBlock: 14284170
+      startBlock: 15243472
       abi: Starlink
     mapping:
       kind: ethereum/events
@@ -35,22 +35,46 @@ dataSources:
     source:
       address: "0x4BE3223f8708Ca6b30D1E8b8926cF281EC83E770"
       abi: PartyDegenerates
-      startBlock: 14284170
+      startBlock: 15247010
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - PartyDegeneratesApproval
-        - PartyDegeneratesApprovalForAll
-        - PartyDegeneratesOwnershipTransferred
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
         - PublicSalePaused
         - PublicSaleStart
-        - PartyDegeneratesTransfer
+        - Transfer
       abis:
         - name: PartyDegenerates
           file: ./abis/PartyDegenerates.json
       eventHandlers:
-        - event: PartyDegeneratesTransfer(indexed address,indexed address,indexed uint256)
-          handler: handlePartyDegeneratesTransfer
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
       file: ./src/party-degenerates.ts
+  - kind: ethereum
+    name: ProofOfBeauty
+    network: mainnet
+    source:
+      address: "0xE18a32192ED95b0FE9D70D19e5025f103475d7BA"
+      abi: ProofOfBeauty
+      startBlock: 15241044
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ApprovalForAll
+        - OwnershipTransferred
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ProofOfBeauty
+          file: ./abis/ProofOfBeauty.json
+      eventHandlers:
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+      file: ./src/proof-of-beauty.ts

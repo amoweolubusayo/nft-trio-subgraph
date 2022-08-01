@@ -21,6 +21,7 @@ type Collection @entity {
   id: ID!
   collectionName: String
   collectionSymbol: String
+  collectionBalance: BigInt
   collectionAddress: Bytes!
   collectibles: [Collectible!] @derivedFrom(field: "collection")
 }

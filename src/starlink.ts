@@ -6,7 +6,7 @@ import {
   getOrCreateAccount,
   getOrCreateCollectible,
   getOrCreateCollection,
-} from "./utils";
+} from "./starlink-util";
 
 export function handleTransfer(event: Transfer): void {
   let collection = getOrCreateCollection(event.address);

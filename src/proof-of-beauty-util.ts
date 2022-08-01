@@ -1,5 +1,5 @@
 import { Address, BigInt, Bytes } from "@graphprotocol/graph-ts";
-import { Starlink } from "../generated/StarLink/Starlink";
+import { ProofOfBeauty } from "../generated/ProofOfBeauty/ProofOfBeauty";
 import { Account, Collectible, Collection } from "../generated/schema";
 
 export function getOrCreateAccount(address: Address): Account {
@@ -22,16 +22,22 @@ export function getOrCreateCollection(address: Address): Collection {
     collection = new Collection(collectionId);
     collection.collectionAddress = address;
 
-    let contract = Starlink.bind(address);
-    let nameResult = contract.try_name();
+    let contract = ProofOfBeauty.bind(address);
+    let nameResult = contract.try_baseMetadataURI();
     if (!nameResult.reverted) {
       collection.collectionName = nameResult.value;
     }
 
-    let symbolResult = contract.try_symbol();
+    let symbolResult = contract.try_baseMetadataURI();
     if (!symbolResult.reverted) {
       collection.collectionSymbol = symbolResult.value;
     }
+
+    let balanceResult = contract.try_balanceOf(address, BigInt.fromString("1"));
+    if (!balanceResult.reverted) {
+      collection.collectionBalance = balanceResult.value;
+    }
+
     collection.save();
   }
   return collection;
@@ -56,9 +62,9 @@ export function getOrCreateCollectible(
     collectible.creator = creatorId;
     collectible.owner = creatorId;
     collectible.created = createdTimestamp;
-    collectible.descriptorUri = Starlink.bind(
+    collectible.descriptorUri = ProofOfBeauty.bind(
       Address.fromBytes(collectionAddress)
-    ).tokenURI(tokenId);
+    ).contractURI();
     collectible.save();
   }
   return collectible;
